@@ -1,7 +1,6 @@
 package u04lab.code
 
-import List.*
-import scala.language.postfixOps
+import List._
 
 trait Student:
   def name: String
@@ -59,6 +58,11 @@ object Course:
     (s1.courses, s2.courses, s3.courses)
   ) // (Cons(PCD,Cons(PPS,Nil())),Cons(PPS,Nil()),Cons(SDR,Cons(PCD,Cons(PPS,Nil()))))
   println(s1.hasTeacher("Ricci")) // true
+
+  
+
+
+
 
 /** Hints:
   *   - simply implement Course, e.g. with a case class

@@ -10,6 +10,14 @@ enum List[E]:
 
 // a companion object (i.e., module) for List
 object List:
+  
+  //Ex1 opzionale
+  def apply[A](args: A*): List[A] =
+     var list : List[A] = Nil()
+     for (e <- args)
+       list = append(list, Cons(e, Nil()))
+     list
+
   def sum(l: List[Int]): Int = l match
     case Cons(h, t) => h + sum(t)
     case _ => 0
@@ -61,3 +69,9 @@ object List:
 
   def take[A](list: List[A], n: Int): List[A] = reverse(drop(reverse(list), length(list) - n))
 end List
+
+//Test List with prinln
+@main def checkListFactory(): Unit =
+  val lista = List("a","b","c") //Expected Cons("a", Cons("b", Cons("c", Nil()
+  println(lista)
+
