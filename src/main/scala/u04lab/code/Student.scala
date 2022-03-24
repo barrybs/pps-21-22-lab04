@@ -39,6 +39,13 @@ object Course:
   private case class CourseImpl (override val name: String,
                          override val teacher: String) extends Course
 
+
+object SameTeacher:
+  def unapply(value: List[Course]): scala.Option[String] = value match
+    case Cons(h, t) if foldLeft(t)(true)((acc, l) => acc && h.teacher == l.teacher) => scala.Some(h.teacher)
+    case _ => None
+
+
 @main def checkStudents(): Unit =
   val cPPS = Course("PPS", "Viroli")
   val cPCD = Course("PCD", "Ricci")
@@ -59,7 +66,25 @@ object Course:
   ) // (Cons(PCD,Cons(PPS,Nil())),Cons(PPS,Nil()),Cons(SDR,Cons(PCD,Cons(PPS,Nil()))))
   println(s1.hasTeacher("Ricci")) // true
 
-  
+@main def checkListFactory: Unit =
+  //Check List creation by factory
+  val strings = List("a","b","c") //Expected Cons("a", Cons("b", Cons("c", Nil()
+  val cPPS = Course("PPS", "Viroli")
+  val cPCD = Course("PCD", "Ricci")
+  val cSDR = Course("SDR", "D'Angelo")
+  val courses = List(cPPS, cPCD, cSDR)
+  println(strings)
+  println(courses)
+
+@main def checkSameTeacher: Unit =
+  //Check SameTeacher
+  val coursesViroli = List(Course("1", "Viroli"), Course("2", "Viroli"), Course("3", "Viroli"))
+  coursesViroli match
+    case SameTeacher("Viroli") => println(s"$coursesViroli have same teacher Viroli")
+    case _ => println(s"$coursesViroli have different teachers")
+
+
+
 
 
 

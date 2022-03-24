@@ -70,8 +70,3 @@ object List:
   def take[A](list: List[A], n: Int): List[A] = reverse(drop(reverse(list), length(list) - n))
 end List
 
-//Test List with prinln
-@main def checkListFactory(): Unit =
-  val lista = List("a","b","c") //Expected Cons("a", Cons("b", Cons("c", Nil()
-  println(lista)
-
