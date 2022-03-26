@@ -23,7 +23,7 @@ object Student:
 
     override def enrolling(courses: Course*): List[Course] =
       for (c <- courses)
-        _courses = append(_courses, Cons(c, Nil()))
+        _courses = Cons(c, _courses)
       _courses
 
     override def courses: List[String] =
