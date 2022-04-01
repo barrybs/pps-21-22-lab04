@@ -8,7 +8,7 @@ import scala.util.Random
 /** solution and descriptions at https://bitbucket.org/mviroli/oop2019-esami/src/master/a01a/sol2/ */
 class LogicsImpl(private val size: Int, private val boat: Int) extends Logics:
   private val FAILURES : Int = 0
-  private var hit : u04lab.code.List[Pair[Int,Int]] = Nil()
+  private var hit : u04lab.code.List[Tuple2[Int,Int]] = Nil()
   private val r = Random()
   private val boatRow = r.nextInt(size)
   private val boatLeftCol: Int = r.nextInt(size - boat + 1)
@@ -16,7 +16,7 @@ class LogicsImpl(private val size: Int, private val boat: Int) extends Logics:
 
   def hit(row: Int, col: Int): Result =
     if (row == boatRow && col >= boatLeftCol && col < boatLeftCol + boat)
-      hit = Cons(Pair(row,col),hit)
+      hit = Cons((row,col), hit)
       if length(hit) == boat then
         Result.WON
       else
